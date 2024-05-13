@@ -14,8 +14,10 @@
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.active{
+    color: orange !important;
+}
 .nav-link:hover{
     color: orange !important;
-    font-weight: bold;
-
+    /* font-weight: bold; */
 }
