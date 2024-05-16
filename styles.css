@@ -1,3 +1,8 @@
+/* body */
+body{
+    background-color: black;
+}
+/* header */
 .navbar-brand img {
     width: 50px;
     height: auto;
@@ -20,4 +25,58 @@
 .nav-link:hover{
     color: orange !important;
     /* font-weight: bold; */
+}
+.input-area{
+    display: flex;
+}
+#searchResult {
+    background-color: aliceblue;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+    display:block;
+    /* width: 50%; */
+}
+.card-img-top{
+    margin: 10px;
+    height: 70px;
+    width:fit-content;
+
+}
+.card-text{
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+.form-group{
+    width: 100%;
+}
+/* --main-- */
+main{
+    background-color: black;
+    min-height: 100%;
+}
+.flex{
+    display: flex;
+}
+.details{
+    margin-left: 20px;
+    color: grey;
+    font-weight: bold;
+
+    font-family: 'Gill Sans';
+
+}
+.img{
+    width: 100px;
+    
+}
+#movie-container{
+    margin-top: 20px;
+    display: flex;
+    color: aliceblue;
+
+}
+li .card-img-list{
+    width: 100px;
 }
