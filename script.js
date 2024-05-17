@@ -17,20 +17,34 @@ searchInput.addEventListener("input", async () => {
         searchResult.innerHTML = ""; // clear previous search results
         data.Search.forEach((movie) => {
             const divElement = document.createElement("div");
+
             divElement.classList.add("card");
-
-            const a = document.createElement("a");
-            a.classList.add("card-text");
-            a.onclick = () => {
-                movieDetails(movie);
-            }
-            a.textContent = movie.Title + " - " + movie.Year;
-            divElement.appendChild(a);
-
             const img = document.createElement("img");
             img.src = movie.Poster;
             img.classList.add("card-img-top");
+            
+            
+            
+            
+
+            const a = document.createElement("a");
+            a.classList.add("card-text");
+            
+            a.textContent = movie.Title + " - " + movie.Year;
             a.appendChild(img);
+            divElement.appendChild(a);
+            a.onclick = () => {
+                movieDetails(movie);
+                searchResult.innerHTML = "";
+            }
+            
+            
+            
+            
+
+            
+
+            
 
 
             searchResult.appendChild(divElement);
