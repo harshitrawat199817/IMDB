@@ -25,7 +25,7 @@ IMDB Dummy is a simple web application that allows users to search for movies, v
 
 ## Hosting
 
-The project is hosted at [https://harshitrawat199817.github.io/IMDB/](#).
+The project is hosted at [link](https://harshitrawat199817.github.io/IMDB/).
 
 ## Folder Structure
 
@@ -43,4 +43,4 @@ The project is hosted at [https://harshitrawat199817.github.io/IMDB/](#).
 
 ## Contact
 
-For any questions or feedback, please reach out to [harshitrawat199817@gmail.com].
+For any questions or feedback, please reach out to [email](harshitrawat199817@gmail.com).
