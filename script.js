@@ -8,12 +8,13 @@ const movieList = document.getElementById("movie-list");
 const movieImageContainer = document.getElementById("movie-image-container");
 const movieDetailsContainer = document.getElementById("movie-details-container");
 
+// --- search movie ---
 searchInput.addEventListener("input", async () => {
 
     const response = await fetch(`https://www.omdbapi.com/?apikey=63705e87&s=${searchInput.value}`);
     const data = await response.json();
-    if (data.Response === "True") {
-        searchResult.innerHTML = "";
+    if (data.Response === "True" && data.Search.length > 0) {
+        searchResult.innerHTML = ""; // clear previous search results
         data.Search.forEach((movie) => {
             const divElement = document.createElement("div");
             divElement.classList.add("card");
@@ -38,22 +39,23 @@ searchInput.addEventListener("input", async () => {
 
     }
     else {
-        searchResult.innerHTML = "No movies found.";
+        searchResult.innerHTML = "No movies found."; // if no movies found
     }
 });
 
-
+// --- display movie details ---
 async function movieListFn(value = "Avengers") {
-    movieImageContainer.innerHTML = "";
-    movieDetailsContainer.innerHTML = "";
-    searchResult.innerHTML = "";
-    movieList.innerHTML = "";
-    const response = await fetch(`https://www.omdbapi.com/?apikey=63705e87&s=${value}`);
+    movieImageContainer.innerHTML = ""; // clear previous images
+    movieDetailsContainer.innerHTML = ""; // clear previous details
+    searchResult.innerHTML = ""; // clear previous search results
+    movieList.innerHTML = "";   // clear previous movie list
+    const response = await fetch(`https://www.omdbapi.com/?apikey=63705e87&s=${value}`); 
     const data = await response.json();
 
     // console.log(data.Search);
-    
-    if (data.Response === "True") {
+
+    if (data.Response === "True" && data.Search.length > 0) {
+         
         data.Search.forEach((movie) => {
             const listItem = document.createElement("li");
             listItem.classList.add("list-group-item");
@@ -92,8 +94,6 @@ async function movieListFn(value = "Avengers") {
             flexDiv.appendChild(imageContainerDiv);
             flexDiv.appendChild(detailsDiv);
 
-            // Append the flexDiv to an existing container in the DOM
-            // For example, if movieList is the container:
             listItem.appendChild(flexDiv);
             movieList.appendChild(listItem);
         })
@@ -102,24 +102,28 @@ async function movieListFn(value = "Avengers") {
         movieList.innerHTML = "<h2 class='text-center'>No movies found. Please try again</h2>";
     }
 }
+
 movieListFn();
 
 // --- search button click ---
+// on submit shows displayed movie list  
 searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     movieListFn(searchInput.value)
-    searchInput.value = "";
+    searchInput.value = ""; // clear search input
 }
 );
 
 // --- displays the list of favorite movies ---
 function showFavorites() {
-    movieImageContainer.innerHTML = "";
-    movieDetailsContainer.innerHTML = "";
+    movieImageContainer.innerHTML = ""; // clear the image container
+    movieDetailsContainer.innerHTML = ""; // clear the details container
     const favourites = JSON.parse(localStorage.getItem("favorites")) || [];
-    console.log(favourites);
+
+    // console.log(favourites);
+
     movieList.innerHTML = "";
-    if (favourites.length) {
+    if (favourites.length>0) { 
         favourites.forEach((movie) => {
             const listItem = document.createElement("li");
             listItem.classList.add("list-group-item");
@@ -159,8 +163,6 @@ function showFavorites() {
             flexDiv.appendChild(imageContainerDiv);
             flexDiv.appendChild(detailsDiv);
 
-            // Append the flexDiv to an existing container in the DOM
-            // For example, if movieList is the container:
             listItem.appendChild(flexDiv);
             movieList.appendChild(listItem);
         })
@@ -168,37 +170,45 @@ function showFavorites() {
         movieList.innerHTML = "<h2 class='text-center'>No movies found in favourites</h2>";
     }
 }
-// --- adding favourites ---
+// --- adding favourite movie ---
 function addFavourite(movie) {
-    console.log("adding to favourites", movie.Title);
+
+    // console.log("adding to favourites", movie.Title);
 
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     if (favorites.find(moviein => moviein.imdbID == movie.imdbID) === undefined) {
         favorites.push(movie);
         localStorage.setItem('favorites', JSON.stringify(favorites));
-        // displayFavorites();
     }
 
 }
-// --- removing favourites ---
+// --- removing favourite movie ---
 function removeFavourite(movie) {
-    console.log("removing from favourites", movie.Title);
+
+    // console.log("removing from favourites", movie.Title);
+
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     favorites = favorites.filter(favorite => {
         console.log(favorite, movie);
         return favorite.imdbID !== movie.imdbID;
     });
-    console.log(favorites.length);
+
+    // console.log(favorites.length);
+
     localStorage.setItem('favorites', JSON.stringify(favorites));
     showFavorites();
 
 }
+
+// --- display movie details ---
 async function movieDetails(movie) {
-    console.log(movie);
+
+    // console.log(movie);
+
     const response = await fetch(`https://www.omdbapi.com/?apikey=63705e87&i=${movie.imdbID}&plot=full`);
     const data = await response.json();
 
-    movieImageContainer.innerHTML = "";
+    movieImageContainer.innerHTML = ""; // clear the image container
     const movieImage = document.createElement('img');
     movieImage.src = data.Poster;
     movieImageContainer.appendChild(movieImage);
@@ -239,7 +249,6 @@ async function movieDetails(movie) {
     movieDetailsContainer.innerHTML = ''; // Clear existing content
     movieDetailsContainer.append(h2, p1, p2, p3, p4, p5, p6, p7, p8, favoriteButton);
 
-    movieList.innerHTML = '';
-
+    movieList.innerHTML = ''; // Clear previous search results
 
 }

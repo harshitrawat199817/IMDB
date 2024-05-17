@@ -12,13 +12,13 @@ body{
     color: orange;
     font-size: 30px;
     font-weight: bold;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium';
 }
 #db-text {
     color: white;
     font-size: 30px;
     font-weight: bold;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium';
 }
 .active{
     color: orange !important;
