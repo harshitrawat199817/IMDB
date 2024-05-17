@@ -13,6 +13,7 @@ searchInput.addEventListener("input", async () => {
     const response = await fetch(`https://www.omdbapi.com/?apikey=63705e87&s=${searchInput.value}`);
     const data = await response.json();
     if (data.Response === "True") {
+        searchResult.innerHTML = "";
         data.Search.forEach((movie) => {
             const divElement = document.createElement("div");
             divElement.classList.add("card");
@@ -49,7 +50,9 @@ async function movieListFn(value = "Avengers") {
     movieList.innerHTML = "";
     const response = await fetch(`https://www.omdbapi.com/?apikey=63705e87&s=${value}`);
     const data = await response.json();
-    console.log(data.Search);
+
+    // console.log(data.Search);
+    
     if (data.Response === "True") {
         data.Search.forEach((movie) => {
             const listItem = document.createElement("li");
