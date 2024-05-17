@@ -43,4 +43,4 @@ The project is hosted at [link](https://harshitrawat199817.github.io/IMDB/).
 
 ## Contact
 
-For any questions or feedback, please reach out to [email](harshitrawat199817@gmail.com).
+For any questions or feedback, please reach out to [harshitrawat199817@gmail.com].
